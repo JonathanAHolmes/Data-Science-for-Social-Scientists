@@ -1,0 +1,296 @@
+% Midterm Exam Question Bank
+% ECO 4971/6971 -- Statistical Learning (ISLR)
+% Material: Classes 5, 6, 7, 8, 8B
+
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{float}
+
+\title{Midterm Exam Question Bank\\[0.5em]
+  \large ECO 4971/6971 -- Machine Learning and Econometrics}
+\author{Introduction to Statistical Learning\\Classes 5--8, 8B}
+\date{}
+
+\begin{document}
+\maketitle
+\noindent \textbf{Instructions:} Short-answer, pen-and-paper. Focus on concepts, not coding or lengthy algebra.
+
+\bigskip
+\hrule
+\bigskip
+
+% ---------- CLASS 5: Statistical Learning Fundamentals ----------
+\section*{Class 5: Statistical Learning \& Model Assessment}
+
+\begin{enumerate}[leftmargin=*]
+
+\item Explain the difference between \textbf{reducible error} and \textbf{irreducible error} when we predict $Y$ using $\hat{f}(\mathbf{X})$. Can we eliminate both in practice?
+
+\item What is the formula for the \textbf{mean squared error (MSE)} in the regression setting? 
+
+\item Why do we often care more about \textbf{test MSE} than \textbf{training MSE} when choosing a model?
+
+\item Define \textbf{overfitting} and explain how it relates to the bias-variance tradeoff.
+
+\item In the bias--variance tradeoff, what do we mean by \textbf{bias} in the context of statistical learning? 
+
+\item For each of the parts (a)-(d), indicate whether we would generally expect the performance of a flexible statistical learning method to be better or worse than an inflexible one. Justify your answer. 
+\begin{enumerate}[label=(\alph*)]
+  \item The sample size $n$ is extremely large, and the number of predictors $p$ is small.
+  \item The numbers of predictors $p$ is large, and the number of observations $n$ is small.
+\item The relationship between the predictors and the response is highly non-linear.
+\item The variance of the error terms is extremely high.
+\end{enumerate}
+
+\item In the context of statistical learning, what is the \textbf{bias-variance tradeoff}? How does it relate to the choice of model complexity?
+
+\item Provide a sketch of typical (squared) bias, variance training error, test error, and irreducible error curves, on a single plot, as we go from less flexible statistical learning methods to more flexible ones. The x-axis should be the amount of flexibility of the method and the y-axis represent the values of each curve. Label each curve. 
+\end{enumerate}
+
+% ---------- CLASS 6: Linear Regression ----------
+\section*{Class 6: Linear Regression}
+
+\begin{enumerate}[leftmargin=*, resume]
+
+\item In a simple linear regression $\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x$, how do we interpret $\hat{\beta}_1$? How does the interpretation change in a multiple regression when we add more predictors?
+
+\item What does \textbf{ordinary least squares (OLS)} minimize? Define the \textbf{residual} for observation $i$ and explain in one sentence what it measures.
+
+\item What does $R^2$ (R-squared) measure in a linear regression? If $R^2$ is very high on the training set, does that guarantee good performance on new data? Briefly explain.
+
+\item When we include a \textbf{categorical predictor} with more than two categories (e.g., region: East, South, West), why do we create dummy variables and omit one category (the \textbf{reference} or \textbf{leave-out} group)? What does the intercept represent in that case?
+
+\item What is an \textbf{interaction effect} between two predictors? Give a simple example (e.g., from the Advertising setting) where an interaction might be useful.
+
+\end{enumerate}
+
+% ---------- CLASS 7: K-Nearest Neighbors Regression ----------
+\section*{Class 7: K-Nearest Neighbors Regression}
+
+\begin{enumerate}[leftmargin=*, resume]
+
+\item In \textbf{K-nearest neighbors (KNN) regression}, provide the formula for predicting the response at a new point$x_0$. What is the role of $K$?
+
+\item If we choose a \textbf{very small} value of $K$ in KNN regression, is the resulting $\hat{f}$ more flexible or less flexible? What tends to happen to variance and bias?
+
+\item When might \textbf{KNN regression} perform better than \textbf{linear regression}? When might linear regression be preferred over KNN?
+
+\end{enumerate}
+
+% ---------- CLASS 8 & 8B: Classification ----------
+\section*{Class 8 \& 8B: Classification}
+
+\begin{enumerate}[leftmargin=*, resume]
+
+\item In the \textbf{linear probability model (LPM)}, we regress a binary outcome on predictors using OLS. Name one drawback of the LPM. 
+
+\item In \textbf{logistic regression}, we model the probability $p(X) = \Pr(Y=1 \mid X)$. Why does the logistic function ensure that $p(X)$ stays between 0 and 1? What does the \textbf{log-odds} $\log\bigl(p(X)/(1-p(X))\bigr)$ equal in terms of $\beta_0$ and $\beta_1 X$?
+
+\item In a \textbf{confusion matrix}, what do we mean by a \textbf{false positive} and a \textbf{false negative}? Why might we care about \textbf{precision} and \textbf{recall} in addition to overall accuracy?
+
+\item The \textbf{F1 score} is defined as the harmonic mean of precision and recall. In one sentence, why is F1 useful when the classes are imbalanced (e.g., few positives)?
+
+\end{enumerate}
+
+% ---------- OUTPUT-BASED QUESTIONS (graphs / regression output) ----------
+\newpage
+\section*{Output-Based Questions (Graphs \& Regression Output)}
+
+The following questions refer to specific outputs. Use the tables or figures provided (or substitute your own outputs as noted in comments).
+
+\bigskip
+
+\begin{enumerate}[leftmargin=*, resume]
+
+\item \textbf{Regression output.} Below is simplified output from a regression of \texttt{Sales} on \texttt{TV} and \texttt{Radio} (Advertising data).
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+ & Coef. & Std. err. \\
+\midrule
+Intercept & 2.92 & 0.31 \\
+TV & 0.046 & 0.001 \\
+Radio & 0.19 & 0.009 \\
+\midrule
+$R^2 = 0.90$ & & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Question:} Interpret the coefficient on \texttt{TV}. What would the model predict for Sales when TV = 100 and Radio = 20?
+
+\item \textbf{Training vs.\ test MSE.} Consider the following plot (insert your own figure; see instructions below).
+% INSTRUCTIONS: To generate this figure in Python:
+% 1. Use the same simulated data as in Class 5 (or Advertising data with polynomial features).
+% 2. For a range of polynomial degrees (e.g., 1 to 15), fit the model on the training set and compute training MSE and test MSE.
+% 3. Plot: x = degree (or model complexity), y = MSE; two lines (training MSE, test MSE). Use train_test_split with fixed random_state for reproducibility.
+% 4. Save as: training_test_mse.pdf
+% Example: from Class 5 notebook, the section that compares linear vs quadratic fit and computes MSE on train vs test.
+\begin{center}
+% \includegraphics[width=0.75\textwidth]{training_test_mse.pdf}
+\fbox{\parbox{0.75\textwidth}{\centering\vspace{2cm}[Insert: Training MSE and Test MSE vs.\ model complexity]\vspace{2cm}}}
+\end{center}
+\textbf{Question:} At which point (roughly) would you choose to stop adding complexity? Why does the test MSE eventually increase even though the training MSE keeps decreasing?
+
+\item \textbf{Residual plot.} The figure below shows residuals ($y - \hat{y}$) on the vertical axis and fitted values $\hat{y}$ on the horizontal axis.
+% INSTRUCTIONS: To generate this figure:
+% 1. Fit a simple linear regression (e.g., Sales on TV using Advertising data: ads = pd.read_csv(...), model = LinearRegression(), model.fit(X, y)).
+% 2. Compute residuals: res = y - model.predict(X) and fitted: fitted = model.predict(X).
+% 3. plt.scatter(fitted, res); plt.axhline(0, color='k', linestyle='--'); plt.xlabel('Fitted values'); plt.ylabel('Residuals').
+% 4. Save as: residual_plot.pdf
+\begin{center}
+% \includegraphics[width=0.6\textwidth]{residual_plot.pdf}
+\fbox{\parbox{0.6\textwidth}{\centering\vspace{2cm}[Insert: Residuals vs Fitted values]\vspace{2cm}}}
+\end{center}
+\textbf{Question:} If the residuals show a clear curved pattern (e.g., U-shape), what does that suggest about the linear model? What might you try instead?
+
+\item \textbf{Confusion matrix.} A classifier was trained to predict whether a customer has \texttt{HighBalance} (1) or not (0). The confusion matrix on a test set is:
+\begin{center}
+\begin{tabular}{l|cc}
+ & Predicted 0 & Predicted 1 \\
+\midrule
+Actual 0 & 180 & 20 \\
+Actual 1 & 15 & 35 \\
+\end{tabular}
+\end{center}
+\textbf{Question:} (a) How many observations are in the test set? (b) How many false positives are there? (c) Compute the accuracy and the recall for class 1 (HighBalance).
+
+\item \textbf{Precision, recall, F1.} Below is a classification report for a binary classifier (class 1 = positive).
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+ & precision & recall & f1-score & support \\
+\midrule
+Class 0 & 0.92 & 0.88 & 0.90 & 200 \\
+Class 1 & 0.45 & 0.56 & 0.50 & 25 \\
+\midrule
+accuracy & \multicolumn{4}{r}{0.84 \quad (225 total)} \\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Question:} Which class is harder for the model to predict? Explain using the precision and recall values. Why might overall accuracy be misleading here?
+
+\item \textbf{Model comparison table.} The following accuracies were obtained on the same test set for predicting \texttt{HighBalance}:
+\begin{center}
+\begin{tabular}{lc}
+\toprule
+Model & Test accuracy \\
+\midrule
+Logistic regression & 0.958 \\
+LDA & 0.942 \\
+QDA & 0.950 \\
+Naive Bayes & 0.933 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Question:} Which model has the best performance in this table? If LDA and QDA have similar accuracy, what is one reason you might still prefer LDA over QDA in practice?
+
+\item \textbf{ROC curve.} The figure shows ROC curves for two classifiers (A and B) on the same data.
+% INSTRUCTIONS: To generate this figure:
+% 1. Use Default data (e.g., from ISLR): outcome Default (binary), predictor Balance (and optionally Income).
+% 2. Fit two models, e.g., logistic regression and LDA: model_a = LogisticRegression().fit(X_train, y_train), model_b = LinearDiscriminantAnalysis().fit(X_train, y_train).
+% 3. from sklearn.metrics import roc_curve, RocCurveDisplay; fpr_a, tpr_a, _ = roc_curve(y_test, model_a.predict_proba(X_test)[:,1]); similarly for model_b. Plot both curves (plt.plot(fpr_a, tpr_a, label='A'); plt.plot(fpr_b, tpr_b, label='B'); plt.plot([0,1],[0,1], 'k--'); plt.xlabel('False Positive Rate'); plt.ylabel('True Positive Rate'); plt.legend()).
+% 4. Save as: roc_curves.pdf
+\begin{center}
+% \includegraphics[width=0.6\textwidth]{roc_curves.pdf}
+\fbox{\parbox{0.6\textwidth}{\centering\vspace{2cm}[Insert: ROC curves for two classifiers]\vspace{2cm}}}
+\end{center}
+\textbf{Question:} (a) What does the diagonal line (from (0,0) to (1,1)) represent? (b) If you need to limit the false positive rate to 20\%, which classifier would you prefer, and why?
+
+\item \textbf{KNN vs linear fit.} The figure shows a scatter plot of a single predictor $X$ vs response $Y$, with two fitted curves: one is a straight line, the other is wiggly and follows the data more closely.
+% INSTRUCTIONS: To generate this figure:
+% 1. Use Advertising data: X = ads[['TV']], y = ads['Sales'], or simulate nonlinear data (e.g., y = np.sin(2*X) + 0.3*noise).
+% 2. Fit linear regression: reg = LinearRegression().fit(X, y). Fit KNN with small K (e.g., K=5): knn = KNeighborsRegressor(n_neighbors=5).fit(X, y).
+% 3. Create a grid: X_grid = np.linspace(X.min(), X.max(), 300).reshape(-1,1). Predict both models on X_grid.
+% 4. plt.scatter(X, y, alpha=0.5); plt.plot(X_grid, reg.predict(X_grid), label='Linear'); plt.plot(X_grid, knn.predict(X_grid), label='KNN'); plt.legend(); plt.xlabel('X'); plt.ylabel('Y').
+% 5. Save as: knn_vs_linear.pdf
+\begin{center}
+% \includegraphics[width=0.7\textwidth]{knn_vs_linear.pdf}
+\fbox{\parbox{0.7\textwidth}{\centering\vspace{2cm}[Insert: Scatter plot with linear and KNN fitted curves]\vspace{2cm}}}
+\end{center}
+\textbf{Question:} Which curve is likely the linear regression fit and which is the KNN fit? If the true relationship between $X$ and $Y$ is actually linear, which fit would typically generalize better to new data and why?
+
+\item \textbf{Overfitting illustration.} The figure shows a set of training points and two fitted curves: Curve A is a smooth, simple curve; Curve B passes through (or very close to) every training point and is very wiggly.
+% INSTRUCTIONS: To generate this figure:
+% 1. Simulate data: np.random.seed(42); n=30; X = np.linspace(0,1,n) + 0.02*np.random.randn(n); y = np.sin(2*np.pi*X) + 0.3*np.random.randn(n). Reshape X to (n,1).
+% 2. Curve A: fit a low-degree polynomial or linear model, e.g., from sklearn.preprocessing import PolynomialFeatures; poly = PolynomialFeatures(degree=2); Xp = poly.fit_transform(X); reg_low = LinearRegression().fit(Xp, y). Predict on a fine grid.
+% 3. Curve B: fit high-degree polynomial (e.g., degree=15) or KNN with K=2: reg_high = LinearRegression().fit(PolynomialFeatures(degree=15).fit_transform(X), y) or KNN with K=2.
+% 4. Plot: scatter(X, y); plot grid with Curve A predictions; plot grid with Curve B predictions; legend.
+% 5. Save as: overfitting_curves.pdf
+\begin{center}
+% \includegraphics[width=0.7\textwidth]{overfitting_curves.pdf}
+\fbox{\parbox{0.7\textwidth}{\centering\vspace{2cm}[Insert: Training data with smooth curve A and wiggly curve B]\vspace{2cm}}}
+\end{center}
+\textbf{Question:} Which curve is likely to have lower training MSE? Which would you expect to have lower test MSE on new data from the same population? What is the name of the problem that Curve B illustrates?
+
+\end{enumerate}
+
+% ---------- CHALLENGING QUESTIONS ----------
+\newpage
+\section*{Challenging Questions}
+
+These questions require deeper comparison of methods, tradeoff reasoning, or application of concepts to new situations.
+
+\bigskip
+
+\begin{enumerate}[leftmargin=*, resume]
+
+\item We discussed the \textbf{bias--variance tradeoff} mainly in the regression setting (e.g., polynomial degree or $K$ in KNN). In \textbf{classification}, how might the same tradeoff show up when choosing between a very flexible classifier (e.g., KNN with small $K$) and a less flexible one (e.g., linear logistic regression)? What would “high variance” or “high bias” mean for the classifier’s predictions?
+
+\item Why is it generally a \textbf{bad idea} to choose a model solely by picking the one with the \textbf{lowest training MSE}? Give a concrete example.
+
+\item In \textbf{multiple linear regression}, suppose we add a new predictor that is in fact \textbf{unrelated} to the response $Y$ (e.g., random noise). On average, what tends to happen to (a) the training $R^2$, and (b) the test MSE when we use this larger model on new data? Briefly explain the intuition.
+
+\item When we include \textbf{dummy variables} for a categorical predictor with $K$ categories, we omit one category (the reference) to avoid perfect collinearity. Suppose someone instead included a dummy for \textbf{every} category (no reference). What would go wrong when we try to fit the regression (e.g., with the design matrix or the interpretation of the coefficients)?
+
+\item In \textbf{KNN regression}, what happens when the number of predictors $p$ is large? HINT: We have learned a specific term for this in class - if you can't remember it, explain what happens to bias and variance. 
+
+\item In binary classification, we can change the \textbf{decision threshold} (e.g., predict class 1 when $\hat{p}(X) > 0.3$ instead of $0.5$). Explain why we generally \textbf{cannot} simultaneously maximize precision and recall by choosing a threshold. 
+
+\item In \textbf{multinomial logistic regression}, we choose a \textbf{baseline} category and model the log-odds of each other class relative to the baseline. (a) If we changed which class is the baseline, would the \textbf{predicted class} for a new observation (the class with highest predicted probability) change? (b) Would the \textbf{estimated probabilities} for each of the $K$ classes change? Briefly justify your answers.
+
+\end{enumerate}
+
+% ---------- APPLICATION QUESTIONS (real-world scenarios) ----------
+\newpage
+\section*{Application Questions}
+
+These questions ask you to apply course concepts to real-world settings. For each scenario, draw on the methods and ideas from Classes 5--8 and 8B.
+
+\bigskip
+
+\begin{enumerate}[leftmargin=*, resume]
+
+\item A \textbf{hospital} wants to predict which patients are at high risk of readmission within 30 days (yes/no) using age, number of prior visits, and diagnosis code. They fit a linear probability model and a logistic regression on the same data. The LPM sometimes gives predicted “probabilities” of 1.2 or $-0.1$ for some patients. (a) Why does this happen? (b) Which model would you recommend they use for decision-making, and why?
+
+\item A \textbf{credit card company} uses a classifier to flag transactions as fraudulent (positive) or not (negative). False positives mean blocking a legitimate purchase and annoying the customer; false negatives mean letting a fraudulent charge through. If the company wants to \textbf{minimize customer annoyance} while still catching most fraud, should they aim for higher precision or higher recall for the “fraud” class? Explain in one or two sentences.
+
+\item A \textbf{real estate agency} has data on past home sales (price, square footage, number of bedrooms, zip code). They want to predict sale price for new listings. A junior analyst suggests using a very flexible model (e.g., high-degree polynomial or KNN with $K=2$) because it fits the training data almost perfectly. How would you explain, in practical terms, why this might lead to \textbf{poor predictions} for new homes? What would you suggest they do instead to choose a model?
+
+\item A \textbf{nonprofit} runs a free health screening. They use a model to predict who has a certain condition (positive) so they can recommend follow-up. The condition is \textbf{rare} (about 2\% of people). They report that their model has “95\% accuracy.” Why might this accuracy be \textbf{misleading}? What other metric(s) would you want to see before judging whether the model is useful?
+
+\item A \textbf{marketing team} is modeling sales (in dollars) as a function of TV ad spending, radio ad spending, and an indicator for whether the ad ran in the holiday season. They suspect that the effect of TV spending on sales might be \textbf{stronger during the holiday season} than at other times. What kind of term should they add to their regression model to capture this? What would that term represent in words?
+
+\item A \textbf{bank} is building a model to predict whether a loan applicant will default (yes/no) using income, credit score, and employment history. They have 5,000 applications from last year. Someone suggests fitting the model on all 5,000 observations and then evaluating accuracy on the same 5,000 observations. Why is this a \textbf{problem}? What simple step would give a more honest assessment of how the model will perform on new applicants?
+
+\item A \textbf{university} wants to predict first-year GPA (a continuous outcome) using high-school GPA, SAT score, and number of AP courses. The relationship between SAT and GPA is roughly linear in their data, but they are considering using KNN regression instead of linear regression “to be safe.” If the true relationship is actually linear and the data have some noise, which method would you expect to give \textbf{more stable} predictions on new students? Briefly explain.
+
+\item A \textbf{doctor’s office} uses a model to predict whether a patient has a certain disease (positive) so they can order a follow-up test. The follow-up test is expensive and somewhat invasive. Missing a true case (false negative) could delay treatment. Ordering the test for healthy patients (false positive) is costly but less serious. Should the office use a \textbf{higher} or \textbf{lower} classification threshold (e.g., predict positive when $\hat{p} > 0.3$ vs $\hat{p} > 0.7$) compared to the default 0.5? Explain your reasoning.
+
+\item A \textbf{retailer} wants to classify customers into three segments— “low,” “medium,” and “high” value—based on past spending and demographics, so they can tailor promotions. They are choosing between \textbf{multinomial logistic regression} and \textbf{LDA}. Both can handle multiple classes. If the predictors (spending, age, etc.) have very \textbf{non-normal} distributions and different variance in each segment, which method might be more robust, and why?
+
+\item A \textbf{city government} uses a model to predict which buildings are at high risk of code violations (binary: high risk vs not) using building age, size, and neighborhood. They will use the model to target inspections. The city has limited inspectors, so they can only visit a fixed number of buildings. They care most about \textbf{catching as many high-risk buildings as possible} among those they inspect. When comparing two models, which curve (ROC or precision–recall) is more relevant, and what would they look for on that curve (e.g., high something at a given something)?
+
+\end{enumerate}
+
+\bigskip
+\hrule
+\bigskip
+
+\noindent \textbf{Note:} You can select a subset of these questions for the actual exam or reword them as needed. Number of questions and point values can be set when assembling the exam. Questions 31--40 are more challenging; questions 41--50 focus on applying concepts to real-world applications.
+
+\end{document}

@@ -1,0 +1,161 @@
+% Midterm Exam -- Spring 2026 (Answer Key)
+% ECO 4971/6971 -- Statistical Learning (ISLR)
+% Material: Classes 5, 6, 7, 8, 8B
+
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{float}
+
+\title{Midterm Exam -- Spring 2026\\[0.5em]
+  \large ECO 4971/6971 -- Machine Learning and Econometrics\\[0.5em]
+  \normalsize \textbf{Answer Key}}
+
+\begin{document}
+\maketitle
+
+\bigskip
+\hrule
+\bigskip
+
+\begin{enumerate}[leftmargin=*]
+
+\item In OLS, the Residual Sum of Squares (RSS) is defined as
+$$
+  \text{RSS} = \sum_{i=1}^n (y_i - \hat{y}_i)^2.
+$$
+
+\begin{enumerate}
+  \item How is RSS related to MSE? 
+
+  \textbf{Answer:} The mean squared error (MSE) is the average of the squared residuals, so
+  \[
+    \text{MSE} = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2 = \frac{\text{RSS}}{n}.
+  \]
+
+  \item Explain why squaring the errors (rather than taking absolute values) penalizes some kinds of errors more heavily than others. What kind of error does RSS penalize the most?
+
+  \textbf{Answer:} Squaring makes large residuals grow faster than small ones, so a residual of size $2e$ contributes $4$ times as much to RSS as a residual of size $e$. This means RSS penalizes \emph{large-magnitude} errors much more heavily than small ones, making the loss especially sensitive to outliers. 
+  
+Bonus fact: In practice, an observation will tend to have a large outlier with they have extreme values in both the $X$ and $Y$ dimensions (being off of the regression line). This will have a large impact on the $\beta_0$ and $\hat{\beta}_1$ coefficients, as well as the RSS. We call observations that are far away from the center of the distribution of $X$ ``high leverage'' outliers.
+
+  \item If two models are fit to the same data, and Model 1 has a much smaller RSS than Model 2, what (if anything) can you conclude about their predictive performance on new data?
+
+  \textbf{Answer:} A smaller RSS only guarantees that Model 1 fits the \emph{training} data better; it could be overfitting and might actually do worse on new data. To compare predictive performance, we need test/validation error (or cross-validation - coming soon!), not just training RSS.
+
+Also acceptable: A smaller RSS will tend to give better out of sample performance when comparing two models that have the same variance. While there is no way to know the variance of models, it is usually OK to assume that models with smaller RSS will have better predictive performance if the complexity of the model is the same.
+\end{enumerate}
+
+\clearpage
+
+\item This question covers bias and variance as taught in this class (not your econometrics class). Consider two KNN regression models on the same dataset: Model A uses $K=3$, and Model B uses $K=25$. Answer the following questions:  
+\begin{enumerate}
+  \item In one sentence each, explain what bias and variance are in the context of this class. 
+
+  \textbf{Answer:} \emph{Bias} is the systematic difference between the true regression function $f(x)$ and the average prediction $\mathbb{E}[\hat f(x)]$ across repeated training sets. \emph{Variance} measures how much $\hat f(x)$ would fluctuate across different training samples drawn from the same population.
+
+  \item Which of the two KNN models will have a higher bias and which will have a higher variance? You don't need to explain. 
+
+  \textbf{Answer:} $K=3$ (more flexible) has \emph{lower bias} and \emph{higher variance}; $K=25$ (smoother) has \emph{higher bias} and \emph{lower variance}.
+
+  \item Which model will likely have a higher training MSE and which will likely have a higher test MSE? Explain briefly. 
+
+  \textbf{Answer:} The $K=25$ model will always have the \emph{lower training MSE}, because it can fit the training data very closely, including noise (in other words, it has more ``degrees of freedom''). We don't know ex ante which model will have the higher test MSE. If the $K=3$ model has \emph{lower test MSE}, then it is because the extra smoothing reduces variance and overfitting, often giving better generalization.
+\end{enumerate}
+
+\clearpage
+
+\item In the linear probability model (LPM), we regress a binary outcome $Y$ on predictors using OLS. Why are Economists more likely to use LPM, but we tend to use other models in a statistical learning context? Be sure to include an advantage (for econometrics) and a disadvantage (for statistical learning) of a LPM. 
+
+\textbf{Answer:} In econometrics, LPM is attractive because the coefficients are easy to interpret as approximate \emph{marginal effects} on the probability (a one-unit change in $X_j$ changes $P(Y=1)$ by about $\beta_j$), and it fits naturally into the linear regression toolbox (fixed effects, IV, etc.). In statistical learning, LPM is problematic because it can produce predicted “probabilities” outside $[0,1]$, which are hard to interpret. The linear probablility model will also be much less flexible than other models we have seen (and particularly models we are about to see). 
+
+\clearpage
+
+\item You are shown a table of predicted probabilities from a logistic regression model for 10 observations, along with the true labels (0 or 1). At a threshold of 0.5, the confusion matrix is:
+\begin{center}
+\begin{tabular}{l|cc}
+ & Predicted 0 & Predicted 1 \\\hline
+Actual 0 & 6 & 1 \\
+Actual 1 & 1 & 2 \\
+\end{tabular}
+\end{center}
+If the threshold is lowered to 0.3, the confusion matrix becomes:
+\begin{center}
+\begin{tabular}{l|cc}
+ & Predicted 0 & Predicted 1 \\\hline
+Actual 0 & 5 & 2 \\
+Actual 1 & 0 & 3 \\
+\end{tabular}
+\end{center}
+\begin{enumerate}
+  \item How did precision and recall for the positive class change when the threshold was lowered from 0.5 to 0.3?
+
+  \textbf{Answer:} At threshold $0.5$: $\text{TP}=2$, $\text{FP}=1$, $\text{FN}=1$, so precision $=2/(2+1)=2/3\approx 0.67$ and recall $=2/(2+1)=2/3\approx 0.67$. At threshold $0.3$: $\text{TP}=3$, $\text{FP}=2$, $\text{FN}=0$, so precision $=3/(3+2)=0.60$ and recall $=3/(3+0)=1.00$. Thus, recall increased (to 1) and precision decreased.
+
+  \item Explain briefly why this change is typical when we lower the threshold.
+
+  \textbf{Answer:} Lowering the threshold predicts class 1 for more observations, so we catch almost all the actual positives (higher recall) but also label more negatives as positives (more false positives, so lower precision). This tradeoff—higher recall at the cost of precision—is typical when we make the threshold more lenient.
+\end{enumerate} 
+
+\clearpage
+
+\item Below are four research questions. For each one, indicate whether it is more appropriate to use a \emph{machine-learning style} model taught in this calss or an \emph{econometrics style} model. Briefly justify your choice in one sentence per part.
+
+\begin{enumerate}[label=\alph*)]
+  \item Using past browsing behavior, can we predict whether a user will click on a particular online ad? 
+
+  \textbf{Answer:} \emph{Machine-learning style} model — the goal is accurate prediction of future clicks, not causal interpretation, and we typically have many features and large data where flexible predictive models work well.
+
+  \item What is the effect of raising the minimum wage on employment among low-wage workers? 
+
+  \textbf{Answer:} \emph{Econometrics style} model — the question is about a causal effect of a policy change on employment, so we need identification, assumptions, and interpretable parameters rather than just predictive accuracy.
+
+  \item If a firm doubles its TV advertising budget, by how much will its sales change, holding all else equal?
+
+  \textbf{Answer:} \emph{Econometrics style} model — this is a “what if we change $X$” causal question, requiring a model designed for causal interpretation (e.g., regression with careful controls and assumptions).
+
+  \item Given a customer’s credit history and demographics, what is the probability that they will default on their loan next month?
+
+  \textbf{Answer:} \emph{Machine-learning style} model — the main goal is to predict default risk as accurately as possible to make decisions (e.g., lending, pricing), so flexible classification/probability models are appropriate.
+\end{enumerate}
+
+\clearpage
+
+\item This question is designed to test your ability to reason through an unfamiliar problem related to the ROC curve. 
+\begin{enumerate}
+  \item First, draw what you would expect a typical ROC curve for a generic classifier to look like, assuming the classifier is reasonably good. Be sure to label the axes. 
+
+  \textbf{Answer:} A typical ROC curve starts at $(0,0)$, bends up toward the top-left corner, and ends at $(1,1)$, lying above the diagonal line from $(0,0)$ to $(1,1)$. The $x$-axis is the false positive rate (FPR) and the $y$-axis is the true positive rate (TPR).
+
+  \item Now, imagine this classifier is trained on two different datasets. In dataset \#1, the response is very rare (e.g., 1\% positives). In dataset \#2, there is a greater balance between positives and negatives (eg. 50\% positives). Both classifiers perform similarly: A model that classifies 90\% of the true positives correctly makes 5 false positives for every 10 true positives. Should the ROC curves look the same? If not, draw a second ROC curve for the second dataset and label it. 
+
+  \textbf{Answer:} To fix ideas, suppose that the size of the dataset in each case is 1000. 
+
+In dataset \#1, there are 10 true positives and 990 true negatives. The model will classify 90\% of the true positives correctly, so it will identify 9 true positives and 1 false negative. It makes five false positives for every 10 true positives, so it will also identify 4.5 false positives. 
+
+In dataset \#2, there are 500 true positives and 500 true negatives. The model will identify 90\% of the true positives correctly, so it will have identified 450 true positives. For every 10 true positives it will identify 5 false negatives, so it will identify 225 false positives. 
+
+The ROC curve plots the False Positive Rate on the X-Axis and the True Positive Rate on the Y-Axis. The false positive rate is $FPR= \frac{FP}{ TN+ FP}$ (false positives divided by true negative plus false positive). The true positive rate is $\frac{TP}{TP+FN}$. 
+
+In dataset \#1, $FP$ = 4.5, $TN = 990-4.5$, $TP = 9$, $FN = 1$. So $FPR =  4.5/990 = 0.0045$, and the true positive rate is $9/(9+1) = 0.9$.
+
+In dataset \#2, $FP$=225, $TN = 500-225$, $TP = 450$, $FN = 50$.  So the false positive rate is $225/500 = 0.45$ and the true positive rate is $450/500 = 0.9$.
+
+So for a given true positive rate, the false positive rate in dataset \#2 is much higher than in dataset \#1. This means that the ROC curve for dataset \#2 will be further to the right than the ROC curve for dataset \#1.
+
+This exercise is meant to show that we should be careful with interpreting ROC curves (especially the FPR) when the classes are imbalanced. When predicting rare events, the model can look really good (high true positive rate) even if most of the predictions are wrong. 
+
+Here's an analogy: Relying on the FPR is like an NFL scout boasting ``I am a great scout! Of all of the college players who I thought were NOTE going to make it into the NFL Hall of Fame, only .0001\% did!''
+
+Explanation: The Hall of Fame is so rare for a college player that this statistic is basically meaningless. It could be that all of the players the scout tagged as being Hall-of-Fame worthy made it to the Hall of Fame, or it could be that \emph{none} of them did; in both cases, we are likely to get the same FPR as long as the scout picks a reasonable number of players.
+
+
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}
+

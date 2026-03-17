@@ -1,0 +1,119 @@
+% Midterm Exam -- Spring 2026
+% ECO 4971/6971 -- Statistical Learning (ISLR)
+% Material: Classes 5, 6, 7, 8, 8B
+
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{float}
+
+\title{Midterm Exam -- Spring 2026\\[0.5em]
+  \large ECO 4971/6971 -- Machine Learning and Econometrics}
+
+\begin{document}
+\maketitle
+\noindent \textbf{Instructions:} Short-answer, pen-and-paper. Show brief reasoning where appropriate.
+
+\bigskip
+\hrule
+\bigskip
+
+
+
+\begin{enumerate}[leftmargin=*]
+
+\item In OLS, the Residual Sum of Squares (RSS) is defined as
+$$
+  \text{RSS} = \sum_{i=1}^n (y_i - \hat{y}_i)^2.
+$$
+
+\begin{enumerate}
+  \item How is RSS related to MSE? 
+  \vspace{2cm}  
+  
+  \item Explain why squaring the errors (rather than taking absolute values) to penalize some kinds of errors more heavily than others. What kind of error does RSS penalize the most?
+  \vspace{4cm}  
+  \item If two models are fit to the same data, and Model 1 has a much smaller RSS than Model 2, what (if anything) can you conclude about their predictive performance on new data?
+  \vspace{3cm}  
+\end{enumerate}
+ 
+\clearpage
+
+\item This question covers bias and variance as taught in this class (not your econometrics class). Consider two KNN regression models on the same dataset: Model A uses $K=3$, and Model B uses $K=25$. Answer the following questions:  
+\begin{enumerate}
+  \item In one sentence each, explain what bias and variance are in the context of this class. 
+  \vspace{3cm}  
+  \item Which of the two KNN models will have a higher bias and which will have a higher variance? You don't need to explain. 
+  \vspace{1cm}  
+  \item Which model will likely have a higher training MSE and which will likely have a higher test MSE? Explain briefly. 
+  \vspace{3cm}  
+\end{enumerate}
+
+
+
+\item In the linear probability model (LPM), we regress a binary outcome $Y$ on predictors using OLS. Why are Economists more likely to use LPM, but we tend to use other models in a statistical learning context? Be sure to include an advantage (for econometrics) and a disadvantage (for statistical learning) of a LPM. 
+
+\clearpage
+
+
+\item  You are shown a table of predicted probabilities from a logistic regression model for 10 observations, along with the true labels (0 or 1). At a threshold of 0.5, the confusion matrix is:
+\begin{center}
+\begin{tabular}{l|cc}
+ & Predicted 0 & Predicted 1 \\\hline
+Actual 0 & 6 & 1 \\
+Actual 1 & 1 & 2 \\
+\end{tabular}
+\end{center}
+If the threshold is lowered to 0.3, the confusion matrix becomes:
+\begin{center}
+\begin{tabular}{l|cc}
+ & Predicted 0 & Predicted 1 \\\hline
+Actual 0 & 5 & 2 \\
+Actual 1 & 0 & 3 \\
+\end{tabular}
+\end{center}
+\begin{enumerate}
+  \item How did precision and recall for the positive class change when the threshold was lowered from 0.5 to 0.3?
+  \vspace{3cm}  
+  \item Explain briefly why this change is typical when we lower the threshold.
+  \vspace{2cm}  
+\end{enumerate} 
+
+
+\item Below are four research questions. For each one, indicate whether it is more appropriate to use a \emph{machine-learning style} model taught in this calss or an \emph{econometrics style} model. Briefly justify your choice in one sentence per part.
+
+
+\begin{enumerate}[label=\alph*)]
+  \item Using past browsing behavior, can we predict whether a user will click on a particular online ad? 
+  \vspace{1cm}    
+  \item What is the effect of raising the minimum wage on employment among low-wage workers? 
+  \vspace{1cm}  
+  \item If a firm doubles its TV advertising budget, by how much will its sales change, holding all else equal?
+  \vspace{1cm}  
+  \item Given a customer’s credit history and demographics, what is the probability that they will default on their loan next month?
+\end{enumerate}
+
+
+
+
+\clearpage
+\item This question is designed to test your ability to reason through an unfamiliar problem related to the ROC curve. 
+\begin{enumerate}
+  \item First, draw what you would expect a typical ROC curve for a generic classifier to look like, assuming the classifier is reasonably good. Be sure to label the axes. 
+  \item Now, imagine this classifier is trained on two different datasets. In dataset \#1, the response is very rare (e.g., 1\% positives). In dataset \#2, there is a greater balance between positives and negatives (eg. 50\% positives). Both classifiers perform similarly: A model that classifies 90\% of the true positives correctly makes 5 false positives for every 10 true positives. Should the ROC curves look the same? If not, draw a second ROC curve for the second dataset and label it. 
+\end{enumerate}
+
+\end{enumerate}
+
+\clearpage \newpage     
+
+\begin{center}\textbf{Scratch Paper}\end{center}
+
+\noindent
+\vspace{16cm}
+
+\end{document}
+
