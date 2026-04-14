@@ -1,3 +1,22 @@
 .DF_Store
 .DS_Store
 .ipynb_checkpoints
+
+# Large data/cache files
+Class 10 - Model Selection/best_subset_selection_credit_cache.pkl
+
+# LaTeX auxiliary files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.nav
+*.snm
+*.vrb
