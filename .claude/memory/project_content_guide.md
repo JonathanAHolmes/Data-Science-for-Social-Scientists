@@ -61,6 +61,12 @@ The course closely follows *Introduction to Statistical Learning* (ISLR) with Py
 
 **Prediction, not causation.** The course explicitly and repeatedly scopes itself to prediction. Causal language is flagged and avoided. The term paper guide states: "full causal policy evaluation is usually beyond scope—stick to prediction."
 
+**Visualize everything possible.** Key concepts should be illustrated with simple, effective graphs wherever possible. A well-chosen plot is preferred over a verbal description alone.
+
+**3Blue1Brown narrative arc.** Each class should feel like a well-constructed mathematical explainer: open with a compelling question that creates genuine curiosity, build intuition graphically before (or alongside) formal equations, and use equations only where they are necessary to understand the concept — not as a substitute for intuition.
+
+**Code that students can actually use.** Code blocks are designed for interactivity and accessibility, not completeness. This means: concise but effective inline comments that explain the *why* not just the *what*; parameters and cutpoints exposed as easy-to-change variables; and complexity kept low so students focus on the concept being illustrated rather than decoding the code itself.
+
 ---
 
 ## Recurring datasets and what they're used for
