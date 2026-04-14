@@ -1,0 +1,110 @@
+% Term paper Template — ECON 4971 Statistical Learning
+% Compile: pdflatex Term_paper_handout_ECON4971.tex
+
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{microtype}
+\geometry{margin=1in}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
+\setlist[itemize]{leftmargin=*}
+\setlist[enumerate]{leftmargin=*}
+
+\newcommand{\Purpose}[1]{\par\medskip\noindent\textbf{Purpose.} #1\par}
+\newcommand{\guide}[1]{%
+  \par\medskip\noindent\textbf{What to look for.}%
+  \begin{itemize}#1\end{itemize}%
+}
+
+\title{Term paper Template}
+\author{Jonathan Holmes}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{What makes a good statistical learning topic?}
+
+\Purpose{Choose a \textbf{prediction} or \textbf{classification} question that is clear, feasible for one term, and interesting to you.}
+
+\guide{
+  \item A well-defined \textbf{outcome $Y$} and \textbf{predictors $X$} you can name \emph{before} you collect data.
+  \item \textbf{Enough observations} for learning and validation---often hundreds of rows or more is easier than a very small $n$ (ask your instructor if your sample is borderline).
+  \item \textbf{Variation in $Y$}---if almost everyone is the same on the outcome, models have nothing useful to learn.
+  \item \textbf{Accessible, documented data} (stable link, codebook, replication path).
+  \item \textbf{Ethical use}---public, aggregated, or de-identified data suitable for a class project.
+  \item \textbf{Realistic scope}---you can complete cleaning, several models, and honest evaluation in one semester.
+}
+
+\noindent\textbf{Example project ideas} (illustrative).
+Good projects define $Y$ and $X$ clearly, compare to a \textbf{baseline} when possible, and evaluate \textbf{out of sample}.
+Policy-motivated topics are welcome; fairness-focused questions are harder than overall accuracy---narrow the scope and check with your instructor.
+
+\begin{itemize}
+  \item \textbf{Housing:} sale price or rent from unit and neighborhood characteristics.
+  \item \textbf{Sports:} game outcomes or player performance from public statistics.
+  \item \textbf{Health (teaching/public data):} readmission or length of stay vs.\ a simple risk score.
+  \item \textbf{Education:} graduation or remediation need from early indicators (e.g., incremental value over GPA).
+  \item \textbf{Text:} spam, sentiment, or topic classification from labeled documents.
+  \item \textbf{Transport/safety:} delays, bike-share demand, or crash severity from weather, route, and infrastructure.
+  \item \textbf{Energy:} hourly demand or renewable output vs.\ simple seasonal baselines.
+  \item \textbf{Elections:} vote share or turnout at county/precinct level only---\textbf{aggregate data}, not individuals.
+  \item \textbf{Credit---prediction:} repayment or default; compare ML to a \textbf{credit score} or a model using only the score (holdout AUC, Brier, calibration).
+  \item \textbf{Credit---fairness:} error rates or calibration \textbf{by group} (e.g., age); ML is not automatically fair---requires defensible groups, extra metrics, and instructor approval.
+  \item \textbf{Cities/housing policy:} code violations or permit delays to prioritize inspections or workflows.
+  \item \textbf{Labor/social programs:} long unemployment, return-to-work, program take-up, or no-shows---compare rules vs.\ ML; frame \textbf{outreach}, not denying access.
+  \item \textbf{Environment:} air-quality, flood, or fire risk for early warning.
+\end{itemize}
+
+\medskip
+\noindent \textbf{Causal} policy evaluation is usually beyond scope---emphasize \textbf{prediction} and, if needed, \textbf{group-wise comparison of predictions}.
+
+\medskip
+\noindent Ways to ``spice up'' a topic to make it more interesting: 
+\begin{itemize}
+  \item Compare the accuracy of your machine learning model to some existing baseline. For example, if you are looking at credit card defaults, you can compare your machine learning model to a simple logistic regression model that only uses the credit score.
+  \item Look at the fairness of your machine learning model compared to a baseline. For example: If you are looking at admissions decisions from a school, you can predict how well a student performs in university based on their high school GPA and test scores, then see whether the university admitted students that were predicted to perform well (or whether they prioritized some other measure like race, gender, or the finances of their parents). 
+\end{itemize}
+
+
+\section*{Suggested paper structure (reference)}
+
+\noindent
+The following describes what a strong paper typically \textbf{contains}. 
+
+\begin{description}[style=nextline, leftmargin=0pt]
+  \item[\textbf{Abstract} (often 150--250 words).]
+  Prediction problem; data and rough $n$; methods compared; tuning and evaluation; main finding; optional ethics/limitations.
+
+  \item[\textbf{Introduction.}]
+  Context; explicit question; supervised-learning scope; methods preview; roadmap.
+
+  \item[\textbf{Data.}]
+  Source and citation; unit of observation; $Y$ and $X$; sample construction; summaries and exploration; missingness and leakage.
+
+  \item[\textbf{Methods.}]
+  Task type; train/validation/test or CV (with \textbf{seed}); models and tuning; baselines; software; metrics.
+
+  \item[\textbf{Results.}]
+  Tuning plots if relevant; main performance comparison; key coefficients or importance; robustness if possible.
+
+  \item[\textbf{Discussion.}]
+  Compare methods (bias--variance, etc.); limitations; ethics/fairness; next steps.
+
+  \item[\textbf{Conclusion.}]
+  Question and finding; takeaway.
+
+  \item[\textbf{References.}]
+  Data, articles, software; follow your instructor's style.
+
+  \item[\textbf{Appendix} (optional).]
+  Extra tables, robustness, code location.
+\end{description}
+
+\end{document}
