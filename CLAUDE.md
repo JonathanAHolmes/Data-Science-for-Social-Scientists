@@ -28,6 +28,34 @@ Older notebooks were built for the RISE slideshow library, which is no longer us
 - Rewrite bullet-heavy slide cells into prose or structured markdown sections that read naturally top-to-bottom
 - Merge cells that were split purely to control slide breaks
 
+## Notebook formatting conventions
+
+**Title cell** — every notebook opens with a centered HTML block:
+```markdown
+# <div align="center"> Statistical Learning </div>
+# <div align="center"> Machine Learning and Econometrics </div>
+## <div align="center"> ECO 4971/6971 </div>
+#### <div align="center">Class N — Topic name</div>
+<div align="center"> Jonathan Holmes (he/him)</div>
+```
+
+**Document structure** — a "Road map" cell near the top states learning objectives. Major sections use `# Part N: Title`. Subsections use `##` and `###`.
+
+**Prose over bullets** — write in flowing sentences. Bullets are fine for enumerated items or comparison lists, not as a substitute for prose.
+
+**Math** — inline `$...$`, display `$$...$$`. Define every symbol. Use `\hat{f}`, `\mathbf{X}`, `\varepsilon` consistently.
+
+**Code conventions**:
+- Group imports at the top, commented by category (data / visualization / ML / stats)
+- `sns.set_theme(style="white")` at import time
+- `random_state=1706` for all sklearn random seeds
+- `display()` for DataFrames, not `print()`
+- Default figure size `figsize=(12, 8)`; axis label `fontsize=12`
+
+**In-class exercises** — use `# In-Class Exercise #N` as a `#`-level header with numbered questions (`Q1:`, `Q2:`, …). Leave a blank code cell after each exercise block.
+
+**Interactive prompts** — invite students to experiment via inline comments or a bold "Try it" markdown note after a code cell.
+
 ## Python stack
 
 Core libraries used across notebooks:
@@ -40,13 +68,14 @@ Core libraries used across notebooks:
 ## Repository layout
 
 ```
-Class 01–14 - <Topic>/   # One folder per lecture
-  Class N - <Topic>.ipynb  # Lecture notebook / slides
-  *.csv                    # Datasets used in that class
-  *.png / *.pdf            # Figures referenced in slides
-Exams/                     # LaTeX source + compiled PDFs for midterm
-Class XX - Term Paper/     # Term paper handout (Markdown)
-Books/                     # Reference PDFs
+Class 01–14 - <Topic>/      # One folder per lecture
+  Class N - <Topic>.ipynb   # Lecture notebook
+  *.csv                     # Datasets used in that class
+  *.png / *.pdf             # Figures referenced in the notebook
+Exams/
+  Midterm_Exam/             # LaTeX source + compiled PDFs
+Term_Paper/                 # Term paper handout (.tex + .pdf)
+Books/                      # Reference PDFs
 ```
 
 Notable datasets: `Advertising.csv`, `Credit.csv`, `Boston.csv`, `Heart.csv`, `Hitters.csv`, `Auto.csv`, `USArrests.csv`.
