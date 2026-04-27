@@ -28,3 +28,7 @@ Class 10 - Model Selection/best_subset_selection_credit_cache.pkl
 # Final exam: generated figures and archived source banks
 Exams/Final_Exam/figures/
 Exams/Final_Exam/archive/
+
+# Claude Code project files
+.claude/
+CLAUDE.md
