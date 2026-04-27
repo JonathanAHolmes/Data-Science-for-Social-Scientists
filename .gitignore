@@ -2,6 +2,10 @@
 .DS_Store
 .ipynb_checkpoints
 
+# Python build artifacts
+__pycache__/
+.mplconfig/
+
 # Large data/cache files
 Class 10 - Model Selection/best_subset_selection_credit_cache.pkl
 
@@ -20,3 +24,7 @@ Class 10 - Model Selection/best_subset_selection_credit_cache.pkl
 *.nav
 *.snm
 *.vrb
+
+# Final exam: generated figures and archived source banks
+Exams/Final_Exam/figures/
+Exams/Final_Exam/archive/

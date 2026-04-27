@@ -1,0 +1,336 @@
+% Global Final Exam Question Bank (Combined)
+% ECO 4971/6971 -- Statistical Learning (ISLR)
+
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{float}
+
+\title{Final Exam Practice Questions\\[0.5em]
+  \large ECO 4971/6971 -- Machine Learning and Econometrics}
+\author{Introduction to Statistical Learning\\Classes 5--13 (cumulative)}
+\date{}
+
+\begin{document}
+\maketitle
+
+\bigskip
+\hrule
+\bigskip
+
+% =============================================================
+% SECTION 1: CORE CONCEPT QUESTIONS (BY CLASS)
+% =============================================================
+\section*{Section 1: Core Concept Questions (By Class)}
+
+% ---------- 1.1 REVIEW: Classes 5-8B ----------
+\subsection*{1.1 Review: Classes 5--8B (Fundamentals, Linear Regression, KNN, Classification)}
+
+\begin{enumerate}[leftmargin=*]
+
+\item A colleague claims that ``because this model has the lowest training error, it must be the best model we have tried.'' Briefly explain why this reasoning is flawed and what you would look at instead.
+
+\item In a multiple linear regression of \texttt{Sales} on \texttt{TV}, \texttt{Radio}, and \texttt{Newspaper}, the coefficient on \texttt{Radio} is $0.19$. State in one sentence what this coefficient means to a marketing manager who is not a statistician.
+
+\item Define the \textbf{residual} for observation $i$, and write the expression that ordinary least squares (OLS) is minimizing. One line each.
+
+\item A classifier produces the following confusion matrix on a test set:
+\begin{center}
+\begin{tabular}{l|cc}
+ & Predicted 0 & Predicted 1 \\\hline
+Actual 0 & 140 & 10 \\
+Actual 1 & 20 & 30 \\
+\end{tabular}
+\end{center}
+Compute (a) overall accuracy, (b) precision for class 1, and (c) recall for class 1. Show your arithmetic.
+
+\item A student says, ``Adding predictors always improves a regression model.'' Comment on the validity of this statement in-sample and out-of-sample.
+
+\item Explain why a high correlation between two predictors can make coefficient interpretation unstable, even when prediction accuracy remains good.
+
+\item In one sentence each, define \textbf{training set}, \textbf{validation set}, and \textbf{test set}.
+
+\item Why is it risky to repeatedly tune many models using the same test set?
+
+\item Give one realistic situation in which a simpler linear model could be preferred over a more accurate black-box classifier.
+
+\item In the statistical learning setup $Y=f(\mathbf{X})+\varepsilon$, explain the roles of $f(\mathbf{X})$ and $\varepsilon$. Which part can a better algorithm reduce, and which part cannot be predicted from $\mathbf{X}$?
+
+\item A regression table reports a 95\% confidence interval for $\beta_1$ of $[0.02,0.08]$. What does this interval suggest about the sign and statistical significance of the relationship?
+
+\item Why do we include only $K-1$ dummy variables for a categorical predictor with $K$ categories when the regression includes an intercept?
+
+\item A KNN regression with $K=3$ finds nearest-neighbor responses $12$, $15$, and $18$ for a new observation. What prediction does KNN make?
+
+\item Why is feature scaling especially important for KNN? Use the idea of distance in your explanation.
+
+\item For KNN, compare a very small value of $K$ with a very large value of $K$ using bias and variance language.
+
+\end{enumerate}
+
+
+% ---------- 1.2 CLASS 9: Resampling Methods ----------
+\subsection*{1.2 Class 9: Resampling Methods (Cross-Validation \& Bootstrap)}
+
+\begin{enumerate}[leftmargin=*, resume]
+
+\item Distinguish between a model's \textbf{parameters} and its \textbf{tuning parameters}, and give one example of each from a method we covered this term.
+
+\item Describe the \textbf{validation set approach} in one or two sentences. What is the main drawback of using a single random train/validation split to choose a model?
+
+\item Compare \textbf{leave-one-out cross-validation (LOOCV)} and \textbf{$k$-fold cross-validation} (e.g., $k=5$ or $10$). Give one reason we usually prefer $k$-fold in practice.
+
+\item In a bootstrap procedure with $B=1{,}000$ replications of a simple linear regression, we obtain $1{,}000$ estimates of the slope $\hat{\beta}_1$. Explain in one sentence how we use these to obtain a \textbf{standard error} for $\hat{\beta}_1$.
+
+\end{enumerate}
+
+% ---------- 1.3 CLASS 10: Model Selection ----------
+\subsection*{1.3 Class 10: Model Selection (Subset Selection, Ridge, Lasso)}
+
+\begin{enumerate}[leftmargin=*, resume]
+
+\item Explain in words what \textbf{best subset selection} does when we have $p$ candidate predictors. Why does it become infeasible for large $p$? What cheaper alternative did we discuss?
+
+\item Write down, in words or symbols, the \textbf{ridge regression} objective function. How does ridge regression differ from ordinary least squares?
+
+\item The \textbf{lasso} replaces the ridge penalty with an $\ell_1$ penalty. State one important practical consequence of this change when we have many candidate predictors.
+
+\item Why must predictors be \textbf{standardized} before fitting ridge or lasso regression? What could go wrong if we forget to do this?
+
+\item When we choose $\lambda$ (the penalty strength) for ridge or lasso, we typically use cross-validation rather than training-set fit. Explain briefly why.
+
+\end{enumerate}
+
+
+% ---------- 1.4 CLASS 11: Tree-Based Methods ----------
+\subsection*{1.4 Class 11: Tree-Based Methods (Trees, Random Forests, Boosting)}
+
+\begin{enumerate}[leftmargin=*, resume]
+
+\item A \textbf{regression tree} partitions the predictor space by choosing, at each step, a variable and a cutpoint. What criterion does the algorithm use to pick the split at each step, and why is the procedure called \textbf{greedy}?
+
+\item For a \textbf{classification tree}, we split using a criterion such as the \textbf{Gini index} or \textbf{entropy} rather than RSS. In one sentence each, explain what these two measures are trying to capture.
+
+\item What is \textbf{bagging}? Why does averaging the predictions of many trees tend to reduce variance? What assumption about the individual trees matters here?
+
+\item How does a \textbf{random forest} differ from plain bagging? Specifically, explain the role of the parameter $m$ (the number of predictors considered at each split), and why the default $m \approx \sqrt{p}$ often helps.
+
+\item What is the \textbf{out-of-bag (OOB) error}, and why does it give us a ``free'' estimate of test error without a separate validation set?
+
+\end{enumerate}
+
+
+% ---------- 1.5 CLASS 12: Deep Learning ----------
+\subsection*{1.5 Class 12: Deep Learning (Feedforward Networks)}
+
+\begin{enumerate}[leftmargin=*, resume]
+
+\item In a feedforward neural network, each hidden unit computes an \textbf{activation function} applied to a weighted sum of its inputs. Why is the activation function essential? What happens to a deep network if we replace every activation function with the identity function $g(z) = z$?
+
+\item Give two distinct strategies we discussed for reducing \textbf{overfitting} in a neural network, and state in one sentence how each works.
+
+\item Why do very deep and very wide neural networks typically require \textbf{large datasets} to perform well? Phrase your answer in terms of the bias--variance tradeoff.
+
+\end{enumerate}
+
+
+% ---------- 1.6 CLASS 13: Unsupervised Learning ----------
+\subsection*{1.6 Class 13: Unsupervised Learning (PCA, K-Means, Hierarchical Clustering)}
+
+\begin{enumerate}[leftmargin=*, resume]
+
+\item What distinguishes \textbf{unsupervised} learning from \textbf{supervised} learning? Give one concrete example of a question each is designed to answer.
+
+\item Describe the \textbf{$K$-means clustering} algorithm in three short steps. What does the algorithm try to minimize? Why might we run the algorithm multiple times from different random starts?
+
+\item Explain what a \textbf{dendrogram} shows in hierarchical clustering. How do we use it to choose a number of clusters?
+
+\item Name two different \textbf{linkage} methods (e.g., complete, single, average) used in hierarchical clustering, and state in one sentence how they differ.
+
+\item Why should the variables typically be \textbf{standardized} before running PCA? Illustrate with a quick example (e.g., one variable measured in dollars and another as a count).
+
+\end{enumerate}
+
+
+
+% =============================================================
+% SECTION 2: OUTPUT-BASED QUESTIONS
+% =============================================================
+\newpage
+\section*{Section 2: Output-Based Questions (Graphs \& Regression Output)}
+
+\bigskip
+
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Ridge coefficient path.} The figure shows standardized ridge regression coefficients on the \texttt{Credit} data as a function of the log penalty $\log(\lambda)$.
+\begin{center}
+\includegraphics[width=0.7\textwidth]{figures/ridge_path.pdf}
+\end{center}
+\textbf{Question:} (a) What happens to the coefficients as $\lambda$ increases? (b) Does ridge regression ever set a coefficient exactly to zero on this plot? Why/why not? 
+
+\item \textbf{Lasso coefficient path.} The figure shows standardized lasso coefficients on the \texttt{Credit} data as a function of $\log(\lambda)$.
+\begin{center}
+\includegraphics[width=0.7\textwidth]{figures/lasso_path.pdf}
+\end{center}
+\textbf{Question:} (a) Describe what happens to individual coefficients as $\lambda$ grows large. (b) Which predictors are the \emph{last} to be shrunk to zero, and what does that suggest about their relationship with \texttt{Balance}?
+
+\item \textbf{Regression tree.} The figure below shows a shallow regression tree (max depth $= 2$) fit to the \texttt{Hitters} data, predicting log salary from \texttt{Years} and \texttt{Hits}.
+\begin{center}
+\includegraphics[width=0.75\textwidth]{figures/hitters_tree.pdf}
+\end{center}
+\textbf{Question:} (a) What log salary would this tree predict for a player with 6 years of experience and 120 hits? (b) Based on the tree, which predictor appears more important at the \emph{top} of the tree, and why does that ordering matter?
+
+\item \textbf{Random forest feature importance.} The bar chart below shows feature importances from a random forest fit to the \texttt{Boston} data (target: \texttt{medv}).
+\begin{center}
+\includegraphics[width=0.7\textwidth]{figures/rf_importance.pdf}
+\end{center}
+\textbf{Question:} (a) Which two features drive the most predictions? (b) A student concludes that ``\texttt{lstat} \emph{causes} housing prices to fall.'' Are they correct and why? 
+
+\item \textbf{Neural network training curves.} The figure shows training loss and validation loss (vertical axis) across epochs (horizontal axis) for a feedforward neural network.
+\begin{center}
+\includegraphics[width=0.7\textwidth]{figures/nn_training_curve.pdf}
+\end{center}
+\textbf{Question:} (a) Roughly at which epoch would \textbf{early stopping} have stopped training? Mark or describe the location. (b) What is happening to the network after that point, and how could we reduce this behavior?
+
+\item \textbf{PCA scree plot.} The figure below shows the proportion of variance explained (bars) and cumulative proportion (line) for the four principal components of the \texttt{USArrests} data.
+\begin{center}
+\includegraphics[width=0.7\textwidth]{figures/scree_plot.pdf}
+\end{center}
+\textbf{Question:} (a) How many principal components would you retain, and what criterion did you use? (b) If the first PC has large positive loadings on \texttt{Murder}, \texttt{Assault}, and \texttt{Rape}, what interpretation would you give to a state's score on PC1?
+
+\item \textbf{Dendrogram.} The figure below is a dendrogram from hierarchical clustering (complete linkage) on the \texttt{USArrests} data after standardization. A horizontal dashed line marks a possible cut.
+\begin{center}
+\includegraphics[width=0.75\textwidth]{figures/dendrogram.pdf}
+\end{center}
+\textbf{Question:} (a) How many clusters would be produced if we cut the tree at the height of the dashed line? (b) If we lowered the cut, would the number of clusters increase or decrease, and why?
+
+\item \textbf{Confusion matrix from Heart classification.} The figure reports test-set results for a depth-3 decision tree predicting heart disease (\texttt{AHD}).
+\begin{center}
+\includegraphics[width=0.62\textwidth]{figures/bank2_heart_confusion_matrix.pdf}
+\end{center}
+\textbf{Question:} Compute (a) accuracy, (b) precision for class ``AHD'', and (c) recall for class ``AHD''.
+
+\item \textbf{ROC comparison.} The figure compares logistic regression and random forest ROC curves on the \texttt{Heart} test set.
+\begin{center}
+\includegraphics[width=0.72\textwidth]{figures/bank2_heart_roc_compare.pdf}
+\end{center}
+\textbf{Question:} (a) Which model has better threshold-free discrimination, and what visual evidence supports this? (b) Can a model with better AUC still have worse accuracy at a fixed threshold of 0.5? Explain briefly.
+
+\item \textbf{Lasso cross-validation curve.} The figure shows 10-fold CV MSE versus $\log(\lambda)$ for lasso on \texttt{Boston} housing data.
+\begin{center}
+\includegraphics[width=0.72\textwidth]{figures/bank2_lasso_cv_curve.pdf}
+\end{center}
+\textbf{Question:} (a) What does the dashed line represent? (b) Why do we usually choose $\lambda$ using CV rather than selecting the smallest training error?
+
+\item \textbf{Random forest OOB error curve.} The figure shows out-of-bag classification error as the number of trees increases.
+\begin{center}
+\includegraphics[width=0.72\textwidth]{figures/bank2_rf_oob_curve.pdf}
+\end{center}
+\textbf{Question:} (a) Describe the pattern of OOB error as trees are added. (b) What explains the initial decrease in the OOB error? (c) Why does error typically plateau rather than keep dropping?
+
+\item \textbf{Training and test error.} The figure below shows training and test MSE for polynomial regressions with degrees 1 through 15.
+\begin{center}
+\includegraphics[width=0.72\textwidth]{figures/qbank3_bias_variance_degrees.pdf}
+\end{center}
+\textbf{Question:} (a) Which degree appears to minimize test MSE? (b) Why does training MSE keep falling after that point?
+
+\item \textbf{KNN tuning.} The figure shows test MSE from KNN regression on the \texttt{Advertising} data for different values of $K$.
+\begin{center}
+\includegraphics[width=0.72\textwidth]{figures/qbank3_knn_k_curve.pdf}
+\end{center}
+\textbf{Question:} (a) Which value of $K$ would you choose from this plot? (b) Explain what would likely happen if $K=1$ were chosen instead.
+
+\item \textbf{Logistic probability curve.} The figure shows a logistic regression predicting whether a credit-card balance is in the top quartile from credit limit.
+\begin{center}
+\includegraphics[width=0.72\textwidth]{figures/qbank3_logistic_threshold.pdf}
+\end{center}
+\textbf{Question:} (a) Around what credit limit does the model assign probability 0.5 to high balance? (b) If the classification threshold were raised from 0.5 to 0.7, what would happen to false positives and false negatives?
+
+\item \textbf{Lasso cross-validation curve.} The figure shows 10-fold CV MSE for lasso models on the \texttt{Credit} data over a grid of $\lambda$ values.
+\begin{center}
+\includegraphics[width=0.72\textwidth]{figures/qbank3_lasso_cv_curve.pdf}
+\end{center}
+\textbf{Question:} (a) What does the vertical dashed line represent? (b) Why should $\lambda$ be chosen using CV rather than training error?
+
+\item \textbf{Regression tree.} The figure shows a depth-3 regression tree predicting log salary in the \texttt{Hitters} data from \texttt{Years} and \texttt{Hits}.
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figures/qbank3_hitters_tree_depth3.pdf}
+\end{center}
+\textbf{Question:} (a) Trace the tree to predict log salary for a player with 8 years and 90 hits. (b) Why might a deeper tree overfit this dataset?
+
+\end{enumerate}
+
+
+% =============================================================
+% SECTION 3: CHALLENGING QUESTIONS
+% =============================================================
+\newpage
+\section*{Section 3: Challenging Questions}
+
+\bigskip
+
+\begin{enumerate}[leftmargin=*, resume]
+
+\item In the \textbf{geometric view} of shrinkage, ridge and lasso both constrain the coefficient vector to lie inside a region around the origin. What is the difference between the shapes of the constraint regions, and how does this difference affect the coefficients?
+
+\item A random forest reports nearly identical \textbf{OOB error} and \textbf{held-out test error} on a dataset. Explain briefly why this agreement is expected. Under what circumstances might the two differ?
+
+\item Two configurations for gradient boosting are being considered on the same data: (A) a small learning rate $\lambda = 0.01$ with $B = 2{,}000$ trees, (B) a large learning rate $\lambda = 0.3$ with $B = 50$ trees. Which configuration is more likely to \textbf{overfit} if $B$ is not tuned carefully, and why?
+
+\item In a binary classification setting with very imbalanced classes (say, 2\% positives), we fit (i) a logistic regression and (ii) a random forest. Both achieve 98\% accuracy. Explain why this accuracy may be \emph{uninformative} and suggest a resampling-based diagnostic (from Class 9) that could help compare the two models.
+
+\item A colleague insists that cross-validation is unnecessary ``because we have a huge dataset --- we can just split once into train and test.'' Under what conditions is this defensible? Give one concrete scenario where you would still recommend $k$-fold CV even with a large sample.
+
+\item Suppose a random forest has much lower training error than a single tree but similar test error. Give two possible explanations.
+
+\item A boosted model improves validation error for the first 300 trees and then slowly worsens. Explain this pattern and describe how you would choose the number of trees.
+
+\item A neural network has training accuracy of 99\% and validation accuracy of 72\%. Name two changes you would try first and explain why.
+
+\item A PCA analysis finds that PC1 explains 70\% of the variation in the predictors, but a classifier using PC1 performs poorly. Explain why this is not a contradiction.
+
+\item In a dataset with 1\% positive cases, compare accuracy, precision, and recall as model evaluation metrics. Which would you emphasize if false negatives are very costly?
+
+\item Explain why using the test set repeatedly during model development can make the final reported test error too optimistic.
+
+\end{enumerate}
+
+
+% =============================================================
+% SECTION 4: APPLICATION QUESTIONS
+% =============================================================
+\newpage
+\section*{Section 4: Application Questions}
+
+These questions ask you to apply course concepts to real-world settings. For each scenario, draw on the methods and ideas from Classes 5--13.
+
+\bigskip
+
+\begin{enumerate}[leftmargin=*, resume]
+
+\item A \textbf{genomics lab} wants to predict disease status from 20{,}000 gene-expression predictors measured on 300 patients. They ask whether ordinary least squares is appropriate. (a) Why is OLS a poor choice here? (b) Which method(s) from the shrinkage / selection family would you recommend, and why?
+
+\item A \textbf{bank} is choosing between (i) a logistic regression and (ii) a random forest to predict loan default. The bank's risk team is required by regulation to \textbf{explain individual decisions} to applicants. Which model should they prefer, and why? What would they gain or lose by choosing the other one?
+
+\item A \textbf{real estate analyst} has a dataset with 80 candidate predictors of house price. Many are likely irrelevant or highly correlated. They want a model that (i) predicts well and (ii) gives a short, interpretable list of predictors. Which regularization method would you recommend, and why?
+
+\item A \textbf{labour economist} wants to estimate the causal effect of an additional year of education on wages. Your friend suggests using a deep neural network ``because it's the most flexible.'' Explain in one or two sentences why the economist's goal may be better served by a simpler linear regression (possibly with instruments), even if a neural net gives lower prediction error.
+
+\item A \textbf{startup} has only 400 observations and is deciding between fitting a large feedforward neural network or a boosted tree ensemble. Which do you expect to perform better on this small dataset, and why? What could they do to make the neural net work better if they insisted on using one?
+
+\item A \textbf{hospital} builds a boosted tree ensemble to predict 30-day readmission. They report ``feature importance'' rankings and tell patients: ``Your high readmission risk is \emph{caused by} your lab test X and age.'' What is wrong with this statement, and what is a more accurate way to describe what the model is telling them?
+
+\item A \textbf{small retailer} wants to quantify the \textbf{uncertainty} around their estimate of the effect of a price change on sales in a simple regression. They do not trust the standard errors reported by their regression software because they suspect the errors are not normally distributed. Which method from Class 9 could they use to get a data-driven standard error, and how would it work?
+
+\item A \textbf{tech company} uses PCA to reduce 50 user-behavior features down to 3 components before fitting a downstream classifier. They find that classification accuracy \emph{improves} relative to using all 50 features. Name one reason this can happen, and one scenario in which PCA before classification would \emph{hurt} predictive performance.
+
+\item A \textbf{public health agency} is deciding whether to use a \textbf{validation set}, \textbf{$k$-fold CV}, or \textbf{LOOCV} to evaluate a model predicting flu outbreaks across 40 small regions. Which procedure would you recommend, and why? Address the bias--variance tradeoff of the estimator of test error in your answer.
+
+\item A \textbf{sports analytics team} wants to predict a player's salary from their career statistics, and also wants to know \textbf{which statistics matter most}. They are choosing between linear regression with Lasso and a random forest with feature importance. Discuss briefly what each approach tells them and how the two answers could \emph{differ} even on the same data.
+
+\end{enumerate}
+
+\end{document}
