@@ -1,9 +1,11 @@
 # ECON 4971 / 6971 — Statistical Learning
 
 **Machine Learning and Econometrics — University of Ottawa**
+
 Instructor: Jonathan Holmes
 
 This repository holds the course materials for Introduction to Machine Learning a course I have taught at the University of Ottawa (ECON 4199) and Tulane (ECON 4971 (undergraduate) / 6971 (graduate)). It is designed to teach students who already know at least a bit of econometrics how to use Machine Learning. 
+
 ---
 
 ## What this course is about
